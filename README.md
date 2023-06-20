@@ -6,41 +6,25 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm start --port=8000`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+## Assessment Details
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The following is a simple ui that allows users to enter the quantity of each product they'd like to order,
+below the input the grand total cost, dimensions, and energy density will be displayed. To the right is a grid
+that will auto add the battery to the layout, each battery is color coded. There's plenty of improvements that I'd like
+to do if I had more bandwidth to work on this. These are a few areas:
+- Including the constraint for the 100 width limit for the grid
+- Using 3d assests and a 3d ui for dragging and dropping the assests onto a virtual site.
+- Obtaining clarity on whether transformers should be auto-added for the batteries or whether the user should have
+freedom to choose but be warned if they exceed more transformers than reccommended or have too many transformers.
+- In this toy example each square is the same size despite the different dimensions, that too would be an area to
+improve on.
+- Lots of values are also hard coded.
+- There's also a lot of inefficiencies with calculations, such as the grid is created every time from scratch instead of updating just a piece of it.
