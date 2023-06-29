@@ -1,4 +1,4 @@
-const getBatteries = () => {
+const getProducts = () => {
     return {
       'Megapack 2XL': { quantity: 0, width: 40, length: 10, energy: 4, cost: 120000, releaseDate: "2022", color: "bg-blue-500"},
       'Megapack 2': { quantity: 0, width: 30, length: 10, energy: 3, cost: 80000, releaseDate: "2021", color: "bg-red-500" },
@@ -9,5 +9,5 @@ const getBatteries = () => {
 }
 
 export default {
-  getBatteries
+  getProducts
 }
