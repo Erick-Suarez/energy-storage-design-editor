@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
 const Grid = () => {
     const [rows, setRows] = useState<number>(6);
@@ -7,11 +7,17 @@ const Grid = () => {
   
     const handleRowsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = parseInt(event.target.value, 10);
+      if(!value) {
+        return;
+      }
       setRows(value);
     };
   
     const handleColumnsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = parseInt(event.target.value, 10);
+      if(!value) {
+        return;
+      }
       setColumns(value > MAX_COL_SIZE ? MAX_COL_SIZE : value);
     };
   

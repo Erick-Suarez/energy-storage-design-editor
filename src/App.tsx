@@ -24,13 +24,35 @@ const App = () => {
     const [totalEnergyDensity, setTotalEnergyDensity] = useState<number>(0);
 
     useEffect(() => {
-        setTotalPrice(calculateTotalPrice());
-        setTotalLandDimension(calculateTotalLandDimension());
-        setTotalEnergyDensity(calculateTotalEnergyDensity());
-      }, [products]);
+      // Calculate the total price, land dimension, and energy density
+      const calculateTotalPrice = () => {
+          return Object.keys(products).reduce((total, name) => {
+          return total + products[name].cost * products[name].quantity;
+          }, 0);
+      };
+
+      const calculateTotalLandDimension = () => {
+          return Object.keys(products).reduce((total, name) => {
+          return total + products[name].width * products[name].length * products[name].quantity;
+          }, 0);
+      };
+
+      const calculateTotalEnergyDensity = () => {
+          return Object.keys(products).reduce((total, name) => {
+          return total + products[name].energy * products[name].quantity;
+          }, 0);
+      };
+      setTotalPrice(calculateTotalPrice());
+      setTotalLandDimension(calculateTotalLandDimension());
+      setTotalEnergyDensity(calculateTotalEnergyDensity());
+    }, [products]);
     
     const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { id, value } = e.target;
+      if(!value) {
+        return;
+      }
+    
       const updatedProducts = {...products, [id]: {...products[id], quantity: parseInt(value)} }
       setProducts(updatedProducts);
       const totalBatteries = Object.keys(updatedProducts)
@@ -39,27 +61,8 @@ const App = () => {
       const totalTransformers = Math.ceil((totalBatteries) / 4);
       setProducts((prevConfig) => ({
         ...prevConfig,
-        ['Transformer']: { ...prevConfig['Transformer'], quantity: totalTransformers}
+        Transformer: { ...prevConfig['Transformer'], quantity: totalTransformers}
       }));
-    };
-    
-    // Calculate the total price, land dimension, and energy density
-    const calculateTotalPrice = () => {
-        return Object.keys(products).reduce((total, name) => {
-        return total + products[name].cost * products[name].quantity;
-        }, 0);
-    };
-
-    const calculateTotalLandDimension = () => {
-        return Object.keys(products).reduce((total, name) => {
-        return total + products[name].width * products[name].length * products[name].quantity;
-        }, 0);
-    };
-
-    const calculateTotalEnergyDensity = () => {
-        return Object.keys(products).reduce((total, name) => {
-        return total + products[name].energy * products[name].quantity;
-        }, 0);
     };
 
     return (
@@ -111,6 +114,7 @@ const App = () => {
                       width={products[name].width}
                       color={products[name].color}
                     />)
+                    return null
                   });
 
                   return (
